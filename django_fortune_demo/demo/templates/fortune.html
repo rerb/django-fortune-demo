@@ -1,0 +1,73 @@
+{% load fortune_tags %}
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+    <title>django-fortune examples</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Robert Erb">
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <p>
+        Static fortune:
+      </p>
+      <blockquote id="staticFortune">
+        {% fortune %}
+      </blockquote>
+    </div>
+
+    <div>
+      <p>
+        Dynamic fortune:
+      </p>
+      <blockquote id="dynamicFortune"></blockquote>
+    </div>
+    <button id="loadDynamicFortune">Load Dynamic Fortune</button>
+
+    <div>
+      <p>
+        Self-updating fortune link:
+      </p>
+      <blockquote>
+        <a href="#" id="fortuneLink">
+          Click here.
+        </a>
+      </blockquote>
+    </div>
+
+    <script>
+     $("#loadDynamicFortune").click(function() {
+       $.ajax({
+         type: "GET",
+         url: "{% url "api:fortune-random" %}",
+         success: function(msg) {
+           $("#dynamicFortune").text(msg.text);
+         },
+         error: function(xhr, ajaxOptions, thrownError) {
+           alert("Something broke. " + thrownError + "\n" + xhr.responseText);
+         }
+       });
+     });
+
+     $("#fortuneLink").click(function() {
+       $.ajax({
+         type: "GET",
+         url: "{% url "api:fortune-random" %}",
+         success: function(msg) {
+           $("#fortuneLink").text(msg.text);
+         },
+         error: function(xhr, ajaxOptions, thrownError) {
+           alert("Something broke. " + thrownError + "\n" + xhr.responseText);
+         }
+       });
+     });
+    </script>
+  </body>
+</html>
