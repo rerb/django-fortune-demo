@@ -46,7 +46,7 @@
      $("#loadDynamicFortune").click(function() {
        $.ajax({
          type: "GET",
-         url: "{% url "api:fortune-random" %}",
+         url: "{% url "fortune:api:fortune-random" %}",
          success: function(msg) {
            $("#dynamicFortune").text(msg.text);
          },
@@ -59,7 +59,7 @@
      $("#fortuneLink").click(function() {
        $.ajax({
          type: "GET",
-         url: "{% url "api:fortune-random" %}",
+         url: "{% url "fortune:api:fortune-random" %}",
          success: function(msg) {
            $("#fortuneLink").text(msg.text);
          },
