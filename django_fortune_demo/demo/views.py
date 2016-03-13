@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 
 
-class FortuneView(TemplateView):
+class FortuneDemoView(TemplateView):
 
-    template_name = "fortune.html"
+    template_name = "fortune_demo.html"

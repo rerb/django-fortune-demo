@@ -1,11 +1,11 @@
 from django.conf.urls import include, url
-from django.contrib import admin
 
-from demo.views import FortuneView
+from demo.views import FortuneDemoView
 
 
-urlpatterns = [url(r"^$", FortuneView.as_view()),
-               url(r"^admin/", admin.site.urls),
+urlpatterns = [url(r"^$",
+                   FortuneDemoView.as_view(),
+                   name="fortune-demo"),
                url(r"^fortune/",
                    include("fortune.urls",
                            namespace="fortune"))]
