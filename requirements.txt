@@ -1,2 +1,4 @@
 django-extensions
 django-fortune
+gunicorn==19.3.0
+psycopg2
